@@ -14,14 +14,15 @@ class DifferTest extends TestCase
 
     public function setUp(): void
     {
-        $this->after = "/home/influx/Projects/php-project-lvl2/tests/fixtures/flat/after.json";
-        $this->before = "/home/influx/Projects/php-project-lvl2/tests/fixtures/flat/before.json";
-        $this->expected = "/home/influx/Projects/php-project-lvl2/tests/fixtures/flat/expected";
+        $this->after = "./tests/fixtures/flat/after.json";
+        $this->before = "./tests/fixtures/flat/before.json";
+        $this->expected = "./tests/fixtures/flat/expected";
     }
 
     public function testGenDiff()
     {
         $result = genDiff($this->before, $this->after);
-        $this->assertEquals(file_get_contents($this->expected), $result);
+        $expected = file_get_contents($this->expected);
+        $this->assertEquals($expected, $result);
     }
 }
