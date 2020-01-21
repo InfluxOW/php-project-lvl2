@@ -15,7 +15,9 @@ before_script:
   - ./cc-test-reporter before-build
   - composer require --dev "squizlabs/php_codesniffer=*"
 
-script: make lint
+script: 
+  - make lint
+  - make test
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
