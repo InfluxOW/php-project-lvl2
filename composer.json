@@ -16,7 +16,10 @@
         "files": [
             "src/DiffMaker.php",
             "src/Cli.php",
-            "src/Parser.php"
+            "src/Parser.php",
+            "src/Ast.php",
+            "src/renderers/Json.php",
+            "src/renderers/Plain.php"
         ]
     },
     "require": {
