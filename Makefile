@@ -3,4 +3,4 @@ install:
 lint:
 	composer run-script phpcs -- --standard=PSR12 src bin
 test:
-	phpunit tests
+	composer run-script phpunit tests

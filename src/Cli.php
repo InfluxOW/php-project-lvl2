@@ -21,13 +21,8 @@ DOC;
 
 function run()
 {
-    $args = getArgs(HELP);
+    $args = \Docopt::handle(HELP);
     $pathToFile1 = $args["<firstFile>"];
     $pathToFile2 = $args["<secondFile>"];
     print_r(genDiff($pathToFile1, $pathToFile2));
-}
-
-function getArgs($content)
-{
-    return \Docopt::handle($content);
 }
