@@ -17,6 +17,7 @@ function astToPlain($ast, $path = '')
     $plainDiff = array_reduce($ast, function ($acc, $item) use ($path) {
         $before = array_key_exists('beforeValue', $item) ? getValue($item['beforeValue']) : null;
         $after = array_key_exists('afterValue', $item) ? getValue($item['afterValue']) : null;
+        
         switch ($item['type']) {
             case 'removed':
                 $acc[] = "Property '{$path}{$item['key']}' was removed.";
