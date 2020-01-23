@@ -29,7 +29,7 @@ function astToPlainDiff($ast, $path = '')
                 $acc[] = "Property '{$path}{$item['key']}' was changed from '$before' to '$after'.";
                 break;
             case 'nested':
-                $acc[] = astToPlain($item['children'], "{$path}{$item['key']}.");
+                $acc[] = astToPlainDiff($item['children'], "{$path}{$item['key']}.");
                 break;
         }
         return $acc;

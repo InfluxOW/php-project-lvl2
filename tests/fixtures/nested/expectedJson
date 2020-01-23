@@ -2,7 +2,7 @@
     {
         "type": "nested",
         "key": "common",
-        "beforeValue": {
+        "valueBefore": {
             "setting1": "Value 1",
             "setting2": "200",
             "setting3": true,
@@ -10,7 +10,7 @@
                 "key": "value"
             }
         },
-        "afterValue": {
+        "valueAfter": {
             "setting1": "Value 1",
             "setting3": true,
             "setting4": "blah blah",
@@ -22,36 +22,36 @@
             {
                 "type": "unchanged",
                 "key": "setting1",
-                "beforeValue": "Value 1",
-                "afterValue": "Value 1"
+                "valueBefore": "Value 1",
+                "valueAfter": "Value 1"
             },
             {
                 "type": "removed",
                 "key": "setting2",
-                "beforeValue": "200"
+                "valueBefore": "200"
             },
             {
                 "type": "unchanged",
                 "key": "setting3",
-                "beforeValue": true,
-                "afterValue": true
+                "valueBefore": true,
+                "valueAfter": true
             },
             {
                 "type": "removed",
                 "key": "setting6",
-                "beforeValue": {
+                "valueBefore": {
                     "key": "value"
                 }
             },
             {
                 "type": "added",
                 "key": "setting4",
-                "afterValue": "blah blah"
+                "valueAfter": "blah blah"
             },
             {
                 "type": "added",
                 "key": "setting5",
-                "afterValue": {
+                "valueAfter": {
                     "key5": "value5"
                 }
             }
@@ -60,11 +60,11 @@
     {
         "type": "nested",
         "key": "group1",
-        "beforeValue": {
+        "valueBefore": {
             "baz": "bas",
             "foo": "bar"
         },
-        "afterValue": {
+        "valueAfter": {
             "foo": "bar",
             "baz": "bars"
         },
@@ -72,28 +72,28 @@
             {
                 "type": "changed",
                 "key": "baz",
-                "beforeValue": "bas",
-                "afterValue": "bars"
+                "valueBefore": "bas",
+                "valueAfter": "bars"
             },
             {
                 "type": "unchanged",
                 "key": "foo",
-                "beforeValue": "bar",
-                "afterValue": "bar"
+                "valueBefore": "bar",
+                "valueAfter": "bar"
             }
         ]
     },
     {
         "type": "removed",
         "key": "group2",
-        "beforeValue": {
+        "valueBefore": {
             "abc": "12345"
         }
     },
     {
         "type": "added",
         "key": "group3",
-        "afterValue": {
+        "valueAfter": {
             "fee": "100500"
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Differ\Renderers\Json;
 
-function astToJson($ast)
+function astToJsonDiff($ast)
 {
     return json_encode($ast, JSON_PRETTY_PRINT);
 }

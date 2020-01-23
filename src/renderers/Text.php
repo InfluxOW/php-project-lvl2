@@ -53,7 +53,7 @@ function genTextDiff($ast, $depth = 1)
     return implode("\n", $textDiff);
 }
 
-function astToText($ast)
+function astToTextDiff($ast)
 {
     return "{\n" . genTextDiff($ast) . "\n}";
 }
