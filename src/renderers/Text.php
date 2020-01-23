@@ -33,7 +33,7 @@ function toString($children, $depth)
 function genTextDiff($ast, $depth = 1)
 {
     $indent = str_repeat('  ', $depth);
-    $plainDiff = array_map(function ($item) use ($indent, $depth) {
+    $textDiff = array_map(function ($item) use ($indent, $depth) {
         $before = array_key_exists('beforeValue', $item) ? getValue($item['beforeValue'], $indent, $depth) : null;
         $after = array_key_exists('afterValue', $item) ? getValue($item['afterValue'], $indent, $depth) : null;
         switch ($item['type']) {
@@ -50,7 +50,7 @@ function genTextDiff($ast, $depth = 1)
                 return "{$indent}  {$item['key']}: {" . "\n{$children}\n" . "{$indent}  }";
         }
     }, $ast);
-    return implode("\n", $plainDiff);
+    return implode("\n", $textDiff);
 }
 
 function astToText($ast)

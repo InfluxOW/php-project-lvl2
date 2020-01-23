@@ -6,6 +6,7 @@ use function Differ\Parser\parse;
 use function Differ\AST\genDiffAst;
 use function Differ\Renderers\Json\astToJson;
 use function Differ\Renderers\Text\astToText;
+use function Differ\Renderers\Plain\astToPlain;
 
 function genDiff($before, $after, $format = 'plain')
 {
@@ -34,6 +35,6 @@ function genDiff($before, $after, $format = 'plain')
         case 'text':
             return astToText($ast);
         case 'plain':
-            return astToPlainDiff($ast);
+            return astToPlain($ast);
     }
 }

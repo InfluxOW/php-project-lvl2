@@ -7,35 +7,49 @@ use function Differ\DiffMaker\genDiff;
 
 class DifferTest extends TestCase
 {
-    public function testPlainTextGenDiff()
+    public function testFlatGenDiff()
     {
         $afterJson = "./tests/fixtures/flat/after.json";
         $beforeJson = "./tests/fixtures/flat/before.json";
         $afterYaml = "./tests/fixtures/flat/after.yaml";
         $beforeYaml = "./tests/fixtures/flat/before.yaml";
-        $expected = "./tests/fixtures/flat/expected";
+        $expectedText = "./tests/fixtures/flat/expectedText";
+        $expectedPlain = "./tests/fixtures/flat/expectedPlain";
 
-        $resultJson = genDiff($beforeJson, $afterJson, 'text');
-        $resultYaml = genDiff($beforeYaml, $afterYaml, 'text');
-        $expected = file_get_contents($expected);
+        $resultJsonText = genDiff($beforeJson, $afterJson, 'text');
+        $resultYamlText = genDiff($beforeYaml, $afterYaml, 'text');
+        $expectedText = file_get_contents($expectedText);
+        $this->assertEquals($expectedText, $resultJsonText);
+        $this->assertEquals($expectedText, $resultYamlText);
 
-        $this->assertEquals($expected, $resultJson);
-        $this->assertEquals($expected, $resultYaml);
+        $resultJsonPlain = genDiff($beforeJson, $afterJson, 'plain');
+        $resultYamlPlain = genDiff($beforeYaml, $afterYaml, 'plain');
+        $expectedPlain = file_get_contents($expectedPlain);
+        $this->assertEquals($expectedPlain, $resultJsonPlain);
+        $this->assertEquals($expectedPlain, $resultJsonPlain);
     }
 
-    public function testNestedTextGenDiff()
+    public function testNestedGenDiff()
     {
         $afterJson = "./tests/fixtures/nested/after.json";
         $beforeJson = "./tests/fixtures/nested/before.json";
         $afterYaml = "./tests/fixtures/nested/after.yaml";
         $beforeYaml = "./tests/fixtures/nested/before.yaml";
-        $expected = "./tests/fixtures/nested/expected";
+        $expectedText = "./tests/fixtures/nested/expectedText";
+        $expectedPlain = "./tests/fixtures/nested/expectedPlain";
 
-        $resultJson = genDiff($beforeJson, $afterJson, 'text');
-        $resultYaml = genDiff($beforeYaml, $afterYaml, 'text');
-        $expected = file_get_contents($expected);
+        $resultJsonText = genDiff($beforeJson, $afterJson, 'text');
+        $resultYamlText = genDiff($beforeYaml, $afterYaml, 'text');
+        $expectedText = file_get_contents($expectedText);
 
-        $this->assertEquals($expected, $resultJson);
-        $this->assertEquals($expected, $resultYaml);
+        $this->assertEquals($expectedText, $resultJsonText);
+        $this->assertEquals($expectedText, $resultYamlText);
+
+        $resultJsonPlain = genDiff($beforeJson, $afterJson, 'plain');
+        $resultYamlPlain = genDiff($beforeYaml, $afterYaml, 'plain');
+        $expectedPlain = file_get_contents($expectedPlain);
+
+        $this->assertEquals($expectedPlain, $resultJsonPlain);
+        $this->assertEquals($expectedPlain, $resultYamlPlain);
     }
 }
