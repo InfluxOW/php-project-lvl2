@@ -19,7 +19,7 @@
             "src/Parser.php",
             "src/Ast.php",
             "src/renderers/Json.php",
-            "src/renderers/Plain.php"
+            "src/renderers/Text.php"
         ]
     },
     "require": {

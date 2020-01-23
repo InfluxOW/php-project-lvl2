@@ -4,7 +4,7 @@ namespace Differ\Ast;
 
 function genDiffAst($beforeData, $afterData)
 {
-    $keys = array_merge(array_keys($beforeData), array_keys($afterData));
+    $keys = array_unique(array_merge(array_keys($beforeData), array_keys($afterData)));
 
     $result = array_reduce($keys, function ($acc, $key) use ($beforeData, $afterData) {
         $beforeValue = $beforeData[$key] ?? null;

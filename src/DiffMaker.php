@@ -3,10 +3,11 @@
 namespace Differ\DiffMaker;
 
 use function Differ\Parser\parse;
-use function Differ\AST\genDiffAST;
-use function Differ\Renderers\Json;
+use function Differ\AST\genDiffAst;
+use function Differ\Renderers\Json\astToJson;
+use function Differ\Renderers\Text\astToText;
 
-function genDiff($before, $after, $format)
+function genDiff($before, $after, $format = 'plain')
 {
     if (!file_exists($before) || !file_exists($after)) {
         throw new \Exception('One or more files are not exist.');
@@ -25,16 +26,14 @@ function genDiff($before, $after, $format)
     $beforeParsed = parse($beforeFormat, $beforeData);
     $afterParsed = parse($afterFormat, $afterData);
 
-    $ast = genDiffAST($beforeParsed, $afterParsed);
+    $ast = genDiffAst($beforeParsed, $afterParsed);
 
     switch ($format) {
         case 'json':
             return astToJson($ast);
         case 'text':
             return astToText($ast);
-        default:
+        case 'plain':
             return astToPlainDiff($ast);
     }
 }
-
-

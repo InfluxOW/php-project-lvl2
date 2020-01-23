@@ -7,28 +7,35 @@ use function Differ\DiffMaker\genDiff;
 
 class DifferTest extends TestCase
 {
-    public $afterJson;
-    public $beforeJson;
-    public $afterYaml;
-    public $beforeYaml;
-    public $expected;
-
-    public function setUp(): void
+    public function testPlainTextGenDiff()
     {
-        $this->afterJson = "./tests/fixtures/flat/after.json";
-        $this->beforeJson = "./tests/fixtures/flat/before.json";
-        $this->afterYaml = "./tests/fixtures/flat/after.yaml";
-        $this->beforeYaml = "./tests/fixtures/flat/before.yaml";
-        $this->expected = "./tests/fixtures/flat/expected";
-    }
+        $afterJson = "./tests/fixtures/flat/after.json";
+        $beforeJson = "./tests/fixtures/flat/before.json";
+        $afterYaml = "./tests/fixtures/flat/after.yaml";
+        $beforeYaml = "./tests/fixtures/flat/before.yaml";
+        $expected = "./tests/fixtures/flat/expected";
 
-    public function testGenDiffWork()
-    {
-        $resultJson = genDiff($this->beforeJson, $this->afterJson);
-        // $resultYaml = genDiff($this->beforeYaml, $this->afterYaml);
-        $expected = file_get_contents($this->expected);
+        $resultJson = genDiff($beforeJson, $afterJson, 'text');
+        $resultYaml = genDiff($beforeYaml, $afterYaml, 'text');
+        $expected = file_get_contents($expected);
 
         $this->assertEquals($expected, $resultJson);
-        // $this->assertEquals($expected, $resultYaml);
+        $this->assertEquals($expected, $resultYaml);
+    }
+
+    public function testNestedTextGenDiff()
+    {
+        $afterJson = "./tests/fixtures/nested/after.json";
+        $beforeJson = "./tests/fixtures/nested/before.json";
+        $afterYaml = "./tests/fixtures/nested/after.yaml";
+        $beforeYaml = "./tests/fixtures/nested/before.yaml";
+        $expected = "./tests/fixtures/nested/expected";
+
+        $resultJson = genDiff($beforeJson, $afterJson, 'text');
+        $resultYaml = genDiff($beforeYaml, $afterYaml, 'text');
+        $expected = file_get_contents($expected);
+
+        $this->assertEquals($expected, $resultJson);
+        $this->assertEquals($expected, $resultYaml);
     }
 }

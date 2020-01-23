@@ -22,7 +22,11 @@ DOC;
 function run()
 {
     $args = \Docopt::handle(HELP);
+
     $pathToFile1 = $args["<firstFile>"];
     $pathToFile2 = $args["<secondFile>"];
-    print_r(genDiff($pathToFile1, $pathToFile2));
+    $format = $args['--format'];
+
+    $diff = genDiff($pathToFile1, $pathToFile2, $format);
+    print_r($diff);
 }
