@@ -4,7 +4,7 @@ php:
 
 env:
   global:
-      - CC_TEST_REPORTER_ID=52ae0335dae98dd547d8c5cf6246b07219151bbfdf6d7611859d82a5f84c3b4a
+      - CC_TEST_REPORTER_ID=819a51207b9dd5d73400299908fe2ff7adf796b1424e48a47034221928b046de
 
 install:
   - make install
