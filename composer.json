@@ -1,6 +1,6 @@
 {
     "name": "influx/php-project-lvl2",
-    "description": "My second PHP project on Hexlet",
+    "description": "App for finding differences between two .json or.yaml files",
     "type": "project",
     "license": "MIT",
     "authors": [

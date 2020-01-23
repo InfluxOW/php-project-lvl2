@@ -34,8 +34,8 @@ function genTextDiff($ast, $depth = 1)
 {
     $indent = str_repeat('  ', $depth);
     $textDiff = array_map(function ($item) use ($indent, $depth) {
-        $before = array_key_exists('beforeValue', $item) ? getValue($item['beforeValue'], $indent, $depth) : null;
-        $after = array_key_exists('afterValue', $item) ? getValue($item['afterValue'], $indent, $depth) : null;
+        $before = array_key_exists('valueBefore', $item) ? getValue($item['valueBefore'], $indent, $depth) : null;
+        $after = array_key_exists('valueAfter', $item) ? getValue($item['valueAfter'], $indent, $depth) : null;
         switch ($item['type']) {
             case 'removed':
                 return "{$indent}- {$item['key']}: {$before}";

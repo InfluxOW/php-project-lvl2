@@ -12,11 +12,11 @@ function getValue($value)
     return isBool($value);
 }
 
-function astToPlain($ast, $path = '')
+function astToPlainDiff($ast, $path = '')
 {
     $plainDiff = array_reduce($ast, function ($acc, $item) use ($path) {
-        $before = array_key_exists('beforeValue', $item) ? getValue($item['beforeValue']) : null;
-        $after = array_key_exists('afterValue', $item) ? getValue($item['afterValue']) : null;
+        $before = array_key_exists('valueBefore', $item) ? getValue($item['valueBefore']) : null;
+        $after = array_key_exists('valueAfter', $item) ? getValue($item['valueAfter']) : null;
         
         switch ($item['type']) {
             case 'removed':
