@@ -21,7 +21,7 @@ DOC;
 
 function run()
 {
-    $args = \Docopt::handle(HELP);
+    $args = \Docopt::handle(HELP, ['version' => "v1.0.0"]);
 
     $pathToFile1 = $args["<firstFile>"];
     $pathToFile2 = $args["<secondFile>"];
