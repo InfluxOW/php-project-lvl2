@@ -2,22 +2,12 @@ language: php
 php:
   - '7.3'
 
-env:
-  global:
-      - CC_TEST_REPORTER_ID=819a51207b9dd5d73400299908fe2ff7adf796b1424e48a47034221928b046de
-
 install:
   - make install
 
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
   - composer require --dev "squizlabs/php_codesniffer=*"
 
 script: 
   - make lint
   - make test
-
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
