@@ -34,17 +34,16 @@ function genTextDiff($ast, $depth = 1)
 {
     $indent = str_repeat('  ', $depth);
     $textDiff = array_map(function ($item) use ($indent, $depth) {
-        $before = array_key_exists('valueBefore', $item) ? getValue($item['valueBefore'], $indent, $depth) : null;
-        $after = array_key_exists('valueAfter', $item) ? getValue($item['valueAfter'], $indent, $depth) : null;
         switch ($item['type']) {
             case 'removed':
-                return "{$indent}- {$item['key']}: {$before}";
+                return "{$indent}- {$item['key']}: " . getValue($item['valueBefore'], $indent, $depth);
             case 'added':
-                return "{$indent}+ {$item['key']}: {$after}";
+                return "{$indent}+ {$item['key']}: " . getValue($item['valueAfter'], $indent, $depth);
             case 'unchanged':
-                return "{$indent}  {$item['key']}: {$before}";
+                return "{$indent}  {$item['key']}: " . getValue($item['valueBefore'], $indent, $depth);
             case 'changed':
-                return "{$indent}+ {$item['key']}: {$after}" . "\n" . "{$indent}- {$item['key']}: {$before}";
+                return "{$indent}+ {$item['key']}: " . getValue($item['valueAfter'], $indent, $depth) . "\n" .
+                "{$indent}- {$item['key']}: " . getValue($item['valueBefore'], $indent, $depth);
             case 'nested':
                 $children = genTextDiff($item['children'], $depth + 2);
                 return "{$indent}  {$item['key']}: {" . "\n{$children}\n" . "{$indent}  }";

@@ -5,9 +5,6 @@ php:
 install:
   - make install
 
-before_script:
-  - composer require --dev "squizlabs/php_codesniffer=*"
-
 script: 
   - make lint
   - make test
