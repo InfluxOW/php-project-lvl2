@@ -15,18 +15,17 @@ function getValue($value)
 function astToPlainDiff($ast, $path = '')
 {
     $plainDiff = array_reduce($ast, function ($acc, $item) use ($path) {
-        $before = array_key_exists('valueBefore', $item) ? getValue($item['valueBefore']) : null;
-        $after = array_key_exists('valueAfter', $item) ? getValue($item['valueAfter']) : null;
-        
         switch ($item['type']) {
             case 'removed':
                 $acc[] = "Property '{$path}{$item['key']}' was removed.";
                 break;
             case 'added':
-                $acc[] = "Property '{$path}{$item['key']}' was added with value '$after'.";
+                $acc[] = "Property '{$path}{$item['key']}' was added with value '" .
+                getValue($item['valueAfter']) . "'.";
                 break;
             case 'changed':
-                $acc[] = "Property '{$path}{$item['key']}' was changed from '$before' to '$after'.";
+                $acc[] = "Property '{$path}{$item['key']}' was changed from '" . getValue($item['valueBefore']) .
+                "' to '" . getValue($item['valueAfter']) . "'.";
                 break;
             case 'nested':
                 $acc[] = astToPlainDiff($item['children'], "{$path}{$item['key']}.");

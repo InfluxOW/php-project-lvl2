@@ -14,18 +14,19 @@ class DifferTest extends TestCase
 
     public function testGenDiffWithDataSet($expected, $before, $after, $format)
     {
-        $this->assertEquals(file_get_contents($expected), genDiff($before, $after, $format));
+        $fixtures = "./tests/fixtures/";
+        $this->assertEquals(file_get_contents($fixtures . $expected), genDiff($fixtures . $before, $fixtures . $after, $format));
     }
 
     public function additionProvider()
     {
         return [
-            ["./tests/fixtures/expectedText", "./tests/fixtures/before.json", "./tests/fixtures/after.json", "text"],
-            ["./tests/fixtures/expectedText", "./tests/fixtures/before.yaml", "./tests/fixtures/after.yaml", "text"],
-            ["./tests/fixtures/expectedPlain", "./tests/fixtures/before.json", "./tests/fixtures/after.json", "plain"],
-            ["./tests/fixtures/expectedPlain", "./tests/fixtures/before.yaml", "./tests/fixtures/after.yaml", "plain"],
-            ["./tests/fixtures/expectedJson", "./tests/fixtures/before.json", "./tests/fixtures/after.json", "json"],
-            ["./tests/fixtures/expectedJson", "./tests/fixtures/before.yaml", "./tests/fixtures/after.yaml", "json"]
+            ["expectedText", "before.json", "after.json", "text"],
+            ["expectedText", "before.yaml", "after.yaml", "text"],
+            ["expectedPlain", "before.json", "after.json", "plain"],
+            ["expectedPlain", "before.yaml", "after.yaml", "plain"],
+            ["expectedJson", "before.json", "after.json", "json"],
+            ["expectedJson", "before.yaml", "after.yaml", "json"]
         ];
     }
 }
