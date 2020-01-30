@@ -15,7 +15,10 @@ class DifferTest extends TestCase
     public function testGenDiffWithDataSet($expected, $before, $after, $format)
     {
         $fixtures = "./tests/fixtures/";
-        $this->assertEquals(file_get_contents($fixtures . $expected), genDiff($fixtures . $before, $fixtures . $after, $format));
+        $this->assertEquals(
+            file_get_contents($fixtures . $expected),
+            genDiff($fixtures . $before, $fixtures . $after, $format)
+        );
     }
 
     public function additionProvider()
