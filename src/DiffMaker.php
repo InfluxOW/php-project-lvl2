@@ -1,40 +1,37 @@
 <?php
 
-namespace Differ\DiffMaker;
+namespace Differ;
 
-use function Differ\Parser\parse;
-use function Differ\AST\genDiffAst;
-use function Differ\Renderers\Json\astToJsonDiff;
-use function Differ\Renderers\Text\astToTextDiff;
-use function Differ\Renderers\Plain\astToPlainDiff;
+use Differ\Exceptions\ComparisonException;
+use Differ\Parsers\Parser;
+use Differ\Renderers\PlainAstRenderer;
+use Differ\Renderers\Renderer;
+use Differ\Utils\FileUtils;
+use Differ\Utils\PathUtils;
+use Differ\Exceptions\DifferException;
 
-function genDiff($before, $after, $format = 'plain')
+class DiffMaker
 {
-    if (!file_exists($before) || !file_exists($after)) {
-        throw new \Exception('One or more files are not exist.');
-    }
+    /**
+     * @throws DifferException
+     */
+    public static function genDiff(string $filepathBefore, string $filepathAfter, string $format = PlainAstRenderer::NAME): string
+    {
+        $dataBefore = FileUtils::get($filepathBefore);
+        $dataAfter = FileUtils::get($filepathAfter);
 
-    $dataBefore = file_get_contents($before);
-    $dataAfter = file_get_contents($after);
+        $formatBefore = PathUtils::getExtension($filepathBefore);
+        $formatAfter = PathUtils::getExtension($filepathAfter);
 
-    $formatBefore = pathinfo($before, PATHINFO_EXTENSION);
-    $formatAfter = pathinfo($after, PATHINFO_EXTENSION);
+        if ($formatBefore !== $formatAfter) {
+            throw new ComparisonException('Cannot compare files of two different formats.');
+        }
 
-    if ($formatBefore !== $formatAfter) {
-        throw new \Exception('Cannot compare files of two different formats.');
-    }
+        $parsedBefore = Parser::parse($formatBefore, $dataBefore);
+        $parsedAfter = Parser::parse($formatAfter, $dataAfter);
 
-    $parsedBefore = parse($formatBefore, $dataBefore);
-    $parsedAfter = parse($formatAfter, $dataAfter);
+        $ast = Ast::genDiff($parsedBefore, $parsedAfter);
 
-    $ast = genDiffAst($parsedBefore, $parsedAfter);
-
-    switch ($format) {
-        case 'json':
-            return astToJsonDiff($ast);
-        case 'text':
-            return astToTextDiff($ast);
-        case 'plain':
-            return astToPlainDiff($ast);
+        return Renderer::render($format, $ast);
     }
 }

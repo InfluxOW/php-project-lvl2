@@ -1,0 +1,13 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
+
+    phpstanFunctionalProgramming:
+        disallowThrow: false
+        disallowClasses: false
+        disallowVariablesMutation: false
+        disallowUnusedExpression: false

@@ -1,6 +1,7 @@
-# php-project-lvl2
+# File comparator
 
-**Hexlet.io second PHP project** \
+#### App for finding differences between two .json or.yaml files
+
 Description: https://ru.hexlet.io/professions/php/projects/48
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/28a51604ba3626ea12d3/maintainability)](https://codeclimate.com/github/InfluxOW/php-project-lvl2/maintainability)

@@ -18,27 +18,28 @@
         "bin/gendiff"
     ],
     "autoload": {
-        "files": [
-            "src/DiffMaker.php",
-            "src/Cli.php",
-            "src/Parser.php",
-            "src/Ast.php",
-            "src/renderers/Json.php",
-            "src/renderers/Text.php",
-            "src/renderers/Plain.php"
-        ]
+        "psr-4": {
+            "Differ\\": "src/"
+        }
     },
     "require": {
+        "php": "^8.0",
         "docopt/docopt": "^1.0",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "squizlabs/php_codesniffer": "*",
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "hexlet/phpstan-fp": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^0.12.98",
+        "phpstan/phpstan-phpunit": "^0.12.22"
     },
-    "scripts": {
-        "phpcs": "phpcs",
-        "phpunit": "phpunit",
-        "test": "composer phpunit tests"
-    }
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "beta"
 }
